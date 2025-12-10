@@ -1,0 +1,432 @@
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Variables de Color --- */
+:root {
+  --font-family-main: 'Poppins', sans-serif;
+  --color-background: #FFFFFF;
+  --color-text-primary: #1F2937; /* Oscuro para texto y botones */
+  --color-text-secondary: #6B7280; /* Gris para subtítulos */
+  --color-accent-blue: #3B82F6;   /* Azul para el handle */
+  --color-border-visible: #E5E7EB; /* Gris visible */
+  --color-border-light: #F3F4F6;
+  --sidebar-width: 340px; /* Ancho de columna izq (con margen) */
+  --border-radius: 12px;
+}
+
+/* --- Reset Básico --- */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html, body {
+  font-family: var(--font-family-main);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  width: 100%;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* --- ESTILOS DEL CONTENEDOR PRINCIPAL --- */
+.app-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* --- SIDEBAR (Playlist) --- */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border-light);
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* --- MAIN CONTENT (Player) --- */
+.main-content {
+  flex: 1 1 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+app-player {
+  width: 100%;
+  display: block;
+}
+
+/* --- ESTILOS DE PLAYLIST --- */
+
+/* Contenedor de playlist */
+.playlist-container {
+  width: 100%;
+}
+
+/* Header de la playlist con botón buscar */
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 2rem 2rem 0 2rem;
+}
+
+.playlist-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Botón "Buscar" */
+.search-button {
+  background-color: var(--color-accent-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #2563EB;
+}
+
+/* Subtítulo "Siguiente Canción:" */
+.playlist-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  padding: 0 2rem;
+}
+
+/* Lista de canciones */
+.playlist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 2rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 250px);
+}
+
+/* Item de canción individual */
+.playlist-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.playlist-item:hover {
+  background-color: var(--color-border-light);
+}
+
+.playlist-item.active {
+  background-color: var(--color-border-light);
+  border-color: #E5E7EB;
+}
+
+/* Thumbnail de canción */
+.song-thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Detalles de la canción */
+.song-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.song-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-name {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- ESTILOS DE PLAYER --- */
+
+/* Imagen del álbum */
+.album-art {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-border-light);
+}
+
+/* Título de canción */
+.song-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 320px;
+}
+
+/* Artista de la canción */
+.song-artist {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 320px;
+}
+
+/* Barra de progreso (fondo) */
+.progress {
+  width: 100%;
+  max-width: 320px;
+  height: 6px;
+  background-color: var(--color-border-visible) !important;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 1rem;
+  display: block !important;
+}
+
+/* Progreso (barra oscura) */
+.progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background-color: var(--color-text-primary);
+  border-radius: 3px;
+}
+
+/* Handle (círculo azul) */
+.progress::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-accent-blue);
+  border-radius: 50%;
+}
+
+/* Controles de reproducción */
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  max-width: 320px;
+  justify-content: center;
+}
+
+/* Botones generales */
+.btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-border-visible);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #E5E7EB;
+  color: var(--color-text-primary);
+}
+
+/* Botón Play/Pausa */
+.btn[style*="background"] {
+  width: 50px !important;
+  height: 50px !important;
+  background: var(--color-text-primary) !important;
+  color: var(--color-background) !important;
+  font-size: 1.4rem !important;
+}
+
+.btn[style*="background"]:hover {
+  background: #374151 !important;
+}
+
+/* --- ESTILOS DE BÚSQUEDA --- */
+
+/* Componente de búsqueda */
+app-search {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Input de búsqueda */
+.search-bar input {
+  flex: 1;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--color-border-visible) !important;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.search-bar input:focus {
+  border-color: var(--color-accent-blue) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Botón de búsqueda (lupa) */
+.search-btn {
+  background-color: var(--color-text-primary);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.search-btn:hover {
+  background-color: #374151;
+}
+
+/* Contenedor de resultados en 2 columnas */
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Tarjeta de resultado individual */
+.card-result {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-result:hover {
+  background-color: var(--color-border-light);
+}
+
+.card-result.selected {
+  background-color: var(--color-border-visible);
+  border-color: #D1D5DB;
+}
+
+/* Imagen dentro de tarjeta */
+.card-result img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* --- Responsive --- */
+@media (max-width: 800px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .search-results {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Control de visibilidad app-player y router-outlet --- */
+app-player {
+  width: 100%;
+  display: block;
+}
+
+router-outlet ~ * {
+  width: 100%;
+}
