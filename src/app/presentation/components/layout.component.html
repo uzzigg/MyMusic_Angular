@@ -1,0 +1,9 @@
+<div class="app-container">
+    <aside class="sidebar">
+        <app-playlist></app-playlist>
+    </aside>
+    <main class="main-content">
+        <app-player *ngIf="!isSearchActive"></app-player>
+        <router-outlet></router-outlet>
+    </main>
+</div>
