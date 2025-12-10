@@ -1,0 +1,26 @@
+<div style="width:100%;display:flex;flex-direction:column;align-items:center">
+  <div class="album-art" [style.backgroundImage]="'url(' + (song?.albumImage || defaultImg) + ')'"></div>
+  
+  <div class="song-title">{{ song?.title || '---' }}</div>
+  
+  <div class="song-artist">{{ song?.artist || 'Desconocido' }}</div>
+  
+  <div style="width:100%;max-width:640px;">
+    <div class="progress"></div>
+    
+    <div style="display:flex;justify-content:center;margin-top:12px;" class="controls">
+      <div class="btn" (click)="prev()">«</div>
+      
+      <div class="btn" 
+           (click)="toggle()" 
+           [style.width.px]="isPlaying?72:64" 
+           [style.height.px]="isPlaying?72:64" 
+           [style.borderRadius.px]="isPlaying?36:32" 
+           style="background:linear-gradient(180deg,#2a2a4f,#39376a);color:#fff;font-size:20px;">
+        {{ isPlaying ? '▌▌' : '►' }}
+      </div>
+      
+      <div class="btn" (click)="next()">»</div>
+    </div>
+  </div>
+</div>

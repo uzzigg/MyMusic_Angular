@@ -1,0 +1,162 @@
+/* src/app/presentation/components/player/player.component.css */
+
+/* :host asegura que el player ocupe el espacio en .main-content */
+:host {
+  display: block;
+  width: 100%;
+  max-width: 900px; /* Ancho máximo del reproductor */
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido */
+  padding: 2rem 0;
+}
+
+/* Este .player-main no es necesario, pero ya que está en tu HTML,
+   lo usamos para agrupar la carátula y la info */
+.player-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.album-cover {
+  width: 100%;
+  max-width: 450px; /* Tamaño de carátula de Imagen 1 */
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.song-title {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.artist-name {
+  font-size: 1.25rem; /* 20px */
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* Contenedor de la barra y botones */
+.progress-controls {
+  width: 100%;
+  max-width: 600px; /* Ancho de la sección de controles */
+  margin: 0 auto;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-border-light);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--color-text-primary); /* Barra oscura */
+  border-radius: 3px;
+  position: relative;
+}
+
+/* El círculo (handle) de la barra */
+.progress::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-accent-blue); /* Círculo azul */
+  border-radius: 50%;
+}
+
+.time-info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem; /* 14px */
+  margin-top: 8px;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem; /* 24px */
+  margin-top: 1.5rem;
+}
+
+.control-button {
+  color: var(--color-text-secondary);
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-button:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-border-light);
+}
+
+/* Estilo para los SVG dentro de los botones */
+.control-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor; /* Hereda el color del botón */
+  fill: none; /* Por defecto para botones de línea */
+}
+
+/* Botón de Play/Pausa */
+.play-button {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-text-primary);
+  color: var(--color-background);
+}
+
+.play-button:hover {
+  background-color: #374151; /* Un poco más claro */
+  color: var(--color-background); /* Mantiene color de ícono */
+}
+
+.play-button svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor; /* El ícono de play/pausa SÍ tiene relleno */
+  stroke: none; /* Sin borde */
+  /* Ajuste para centrar el ícono de play */
+  position: relative;
+  left: 2px;
+}
+
+/* Ajuste para el ícono de pausa */
+.play-button svg[fill="currentColor"] path[d*="M6 4h4"] {
+  left: 0;
+}
