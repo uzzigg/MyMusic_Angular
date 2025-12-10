@@ -1,0 +1,31 @@
+<div class="playlist-container">
+  <div class="playlist-header">
+    <h2 class="playlist-title">Playlist</h2>
+    <button class="search-button" (click)="goToSearch()" title="Buscar">Buscar</button>
+  </div>
+
+  <div class="playlist-subtitle">Siguiente Canción:</div>
+
+  <div class="playlist-items" *ngIf="playlist.songs && playlist.songs.length > 0">
+    <div
+      *ngFor="let song of playlist.songs"
+      class="playlist-item"
+      [class.active]="song.id === selected?.id || (song.title === selected?.title && song.artist === selected?.artist)"
+      (click)="selectSong(song)"
+    >
+      <img
+        [src]="song.albumImage || 'data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%2750%27 height=%2750%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23E5E7EB%27/></svg>'"
+        [alt]="song.album?.name || 'Album'"
+        class="song-thumbnail"
+      />
+      <div class="song-details">
+        <span class="song-name">{{ song.title }}</span>
+        <span class="album-name">{{ song.artist }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!playlist.songs || playlist.songs.length === 0" style="padding: 2rem; text-align: center; color: #999;">
+    No hay canciones en la playlist
+  </div>
+</div>
